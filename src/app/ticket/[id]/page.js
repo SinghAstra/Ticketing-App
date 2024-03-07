@@ -1,7 +1,8 @@
+import TicketForm from "@/app/(components)/TicketForm";
 import React from "react";
 
-const TicketForm = ({ params }) => {
-  return <div>TicketForm {params.id}</div>;
+const Ticket = ({ params }) => {
+  return <TicketForm />;
 };
 
-export default TicketForm;
+export default Ticket;
