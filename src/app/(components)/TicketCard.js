@@ -1,34 +1,33 @@
 import React from "react";
-import { FaFireAlt } from "react-icons/fa";
-import { IoRemoveCircleSharp } from "react-icons/io5";
+import { RxCrossCircled } from "react-icons/rx";
+import TicketPriority from "./TicketPriority";
 
 const TicketCard = () => {
   return (
-    <div className="bg-secondary p-2">
-      <div className="flex justify-between items-center bg-secondary">
-        <div className="text-red flex">
-          <FaFireAlt />
-          <FaFireAlt />
-          <FaFireAlt />
-          <FaFireAlt />
-          <FaFireAlt />
-        </div>
-        <div className="text-red text-xl">
-          <IoRemoveCircleSharp />
+    <div className=" bg-cyan-600 p-2 rounded-lg font-mono">
+      <div className="flex justify-between items-center mb-2">
+        <TicketPriority />
+        <div className="text-red-400 text-xl">
+          <RxCrossCircled />
         </div>
       </div>
-      <div>This is Title</div>
+      <div className="text-base">This is Title</div>
       <hr />
-      <p>This is Description for the ticket !!!</p>
+      <p className="text-sm mb-1">This is Description for the ticket !!!</p>
       <div className="flex justify-between">
         <div className="flex flex-col">
-          <p>23rd Dec 2023</p>
-          <div className="bg-white">
-            <div className="bg-primary" style={{ width: "75%" }}></div>
+          <p className="text-xs">23rd Dec 2023</p>
+          <div className="bg-gray-200 rounded-full h-2.5 flex-1">
+            <div
+              className="bg-blue-600 h-2.5 rounded-l-full"
+              style={{ width: "75%" }}
+            ></div>
           </div>
         </div>
-        <div className="bg-red rounded-lg">
-          <p className="text-xs">Started</p>
+        <div>
+          <span className="text-xs bg-red-400 rounded-xl px-2 py-1">
+            Started
+          </span>
         </div>
       </div>
     </div>
