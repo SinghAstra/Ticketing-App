@@ -71,8 +71,8 @@ const TicketForm = () => {
         </label>
         <input
           type="range"
-          min="0"
-          max="4"
+          min="1"
+          max="5"
           id="priority"
           name="priority"
           className="w-full"
