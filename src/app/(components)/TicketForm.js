@@ -5,6 +5,7 @@ const TicketForm = () => {
   const initialValue = {
     title: "",
     description: "",
+    category: "software problem",
     priority: "1",
     status: "not started",
     progress: "0",
@@ -82,6 +83,21 @@ const TicketForm = () => {
           <option value={"not started"}>Not Started</option>
           <option value={"started"}>Started</option>
           <option value={"done"}>Done</option>
+        </select>
+      </div>
+      <div className="mb-2">
+        <label htmlFor="category" className="block mb-1 font-mono">
+          Category
+        </label>
+        <select
+          name="status"
+          className="w-full font-mono border-2 rounded-md"
+          value={formData.category}
+          onChange={handleChange}
+        >
+          <option value={"software problem"}>Software Problem</option>
+          <option value={"hardware problem"}>Hardware Problem</option>
+          <option value={"project"}>Project</option>
         </select>
       </div>
       <div className="mb-2">
