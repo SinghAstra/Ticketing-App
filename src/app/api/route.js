@@ -1,6 +1,17 @@
 import { NextResponse } from "next/server";
 import Ticket from "../models/Ticket";
 
+export async function GET() {
+  try {
+    const tickets = await Ticket.find();
+
+    return NextResponse.json({ tickets }, { status: 200 });
+  } catch (err) {
+    console.log(err);
+    return NextResponse.json({ message: "Error", err }, { status: 500 });
+  }
+}
+
 export async function POST(req) {
   console.log("In the Post");
   try {
