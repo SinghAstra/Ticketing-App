@@ -12,14 +12,15 @@ export async function GET(request, { params }) {
 }
 
 export async function PUT(req, { params }) {
+  console.log("In the put req");
   try {
     const { id } = params;
     const body = await req.json();
-    const ticketData = body.formData;
+    const { formData } = body;
     const updateTicketData = await Ticket.findByIdAndUpdate(
       id,
       {
-        ...ticketData,
+        ...formData,
       },
       { new: true }
     );

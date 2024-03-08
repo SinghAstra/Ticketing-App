@@ -2,7 +2,7 @@
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
-const TicketForm = () => {
+const TicketForm = ({ editTicket, ticketData }) => {
   const router = useRouter();
   const initialValue = {
     title: "",
@@ -24,25 +24,48 @@ const TicketForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await fetch("http://localhost:3000/api", {
-      method: "POST",
-      body: JSON.stringify({ formData }),
-      "Content-Type": "application/json",
-    });
-    console.log("response is ", response);
-    if (response.ok) {
-      router.push("/");
+    if (editTicket) {
+      const response = await fetch(
+        `http://localhost:3000/api/ticket/${formData._id}`,
+        {
+          method: "PUT",
+          body: JSON.stringify({
+            formData: {
+              title: formData.title,
+              description: formData.description,
+              category: formData.category,
+              priority: formData.priority,
+              status: formData.status,
+              progress: formData.progress,
+            },
+          }),
+        }
+      );
+      if (response.ok) {
+        router.push("/");
+      }
+    } else {
+      const response = await fetch("http://localhost:3000/api", {
+        method: "POST",
+        body: JSON.stringify({ formData }),
+        "Content-Type": "application/json",
+      });
+      if (response.ok) {
+        router.push("/");
+      }
     }
   };
 
-  const [formData, setFormData] = useState(initialValue);
+  const [formData, setFormData] = useState(
+    editTicket ? ticketData : initialValue
+  );
   return (
     <form
       className="max-w-sm mx-auto flex flex-col gap-2 border-2 p-3 m-3 rounded-md"
       onSubmit={handleSubmit}
     >
       <h1 className="text-center font-bold font-mono mb-2 text-xl">
-        Create a Ticket
+        {editTicket ? "Edit" : "Create"} a Ticket
       </h1>
       <input
         type="text"
@@ -130,7 +153,7 @@ const TicketForm = () => {
         type="submit"
         className="text-white font-mono bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
       >
-        Create Ticket
+        {editTicket ? "Update" : "Create"} Ticket
       </button>
     </form>
   );

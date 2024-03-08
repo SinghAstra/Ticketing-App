@@ -8,10 +8,12 @@ const TicketDelete = ({ id, handleDelete }) => {
     });
     const data = await response.json();
     handleDelete(id);
-    console.log("data is ", data);
   };
   return (
-    <div className="text-red-400 text-xl" onClick={handleDeleteRequest}>
+    <div
+      className="text-red-400 text-xl cursor-pointer"
+      onClick={handleDeleteRequest}
+    >
       <RxCrossCircled />
     </div>
   );

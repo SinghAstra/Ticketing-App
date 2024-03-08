@@ -3,6 +3,7 @@ import TicketPriority from "./TicketPriority";
 import TicketProgress from "./TicketProgress";
 import TicketStatus from "./TicketStatus";
 import TicketDelete from "./TicketDelete";
+import Link from "next/link";
 
 const TicketCard = ({ ticket, handleDelete }) => {
   function formatTimestamp(timestamp) {
@@ -21,22 +22,25 @@ const TicketCard = ({ ticket, handleDelete }) => {
     return formattedDate;
   }
   return (
-    <div className=" bg-cyan-600 p-2 rounded-lg font-mono flex flex-col">
+    <div className=" bg-cyan-600 p-2 rounded-lg font-mono ">
       <div className="flex justify-between items-center mb-2">
         <TicketPriority priority={ticket.priority} />
         <TicketDelete id={ticket._id} handleDelete={handleDelete} />
       </div>
-      <div className="text-base">{ticket.title}</div>
-      <hr />
-      <p className="text-sm mb-1">{ticket.description}</p>
-      <div className="flex-grow"></div>
-      <div className="flex justify-between">
+      <Link href={`/ticket/${ticket._id}`}>
         <div className="flex flex-col">
-          <p className="text-xs">{formatTimestamp(ticket.createdAt)}</p>
-          <TicketProgress progress={ticket.progress} />
+          <div className="text-base">{ticket.title}</div>
+          <hr />
+          <p className="text-sm mb-1">{ticket.description}</p>
+          <div className="flex justify-between">
+            <div className="flex flex-col">
+              <p className="text-xs">{formatTimestamp(ticket.createdAt)}</p>
+              <TicketProgress progress={ticket.progress} />
+            </div>
+            <TicketStatus status={ticket.status} />
+          </div>
         </div>
-        <TicketStatus status={ticket.status} />
-      </div>
+      </Link>
     </div>
   );
 };

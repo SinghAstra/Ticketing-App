@@ -13,14 +13,10 @@ export async function GET() {
 }
 
 export async function POST(req) {
-  console.log("In the Post");
   try {
     const body = await req.json();
-    console.log("body is ", body);
     const { formData } = body;
-    console.log("formData is ", formData);
     const newTicket = await Ticket.create(formData);
-    console.log("new Ticket is ", newTicket);
     return NextResponse.json(
       { message: "Ticket Created", newTicket },
       { status: 201 }
