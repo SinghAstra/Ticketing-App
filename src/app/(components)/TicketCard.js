@@ -4,7 +4,7 @@ import TicketProgress from "./TicketProgress";
 import TicketStatus from "./TicketStatus";
 import TicketDelete from "./TicketDelete";
 
-const TicketCard = ({ ticket }) => {
+const TicketCard = ({ ticket, handleDelete }) => {
   function formatTimestamp(timestamp) {
     const options = {
       year: "numeric",
@@ -24,7 +24,7 @@ const TicketCard = ({ ticket }) => {
     <div className=" bg-cyan-600 p-2 rounded-lg font-mono flex flex-col">
       <div className="flex justify-between items-center mb-2">
         <TicketPriority priority={ticket.priority} />
-        <TicketDelete />
+        <TicketDelete id={ticket._id} handleDelete={handleDelete} />
       </div>
       <div className="text-base">{ticket.title}</div>
       <hr />

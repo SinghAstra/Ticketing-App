@@ -24,7 +24,9 @@ const Dashboard = () => {
   let uniqueCategory = new Set(tickets.map((ticket) => ticket.category));
   uniqueCategory = [...uniqueCategory];
 
-  console.log("uniqueCategory is ", uniqueCategory);
+  const handleDelete = (id) => {
+    setTickets(tickets.filter((ticket) => ticket._id !== id));
+  };
 
   return (
     <>
@@ -40,6 +42,7 @@ const Dashboard = () => {
                     <TicketCard
                       key={filteredTicket._id}
                       ticket={filteredTicket}
+                      handleDelete={handleDelete}
                     />
                   ))}
               </div>
