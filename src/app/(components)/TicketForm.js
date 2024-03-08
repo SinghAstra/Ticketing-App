@@ -1,7 +1,9 @@
 "use client";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
 const TicketForm = () => {
+  const router = useRouter();
   const initialValue = {
     title: "",
     description: "",
@@ -20,9 +22,17 @@ const TicketForm = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("formData is ", formData);
+    const response = await fetch("http://localhost:3000/api", {
+      method: "POST",
+      body: JSON.stringify({ formData }),
+      "Content-Type": "application/json",
+    });
+    console.log("response is ", response);
+    if (response.ok) {
+      router.push("/");
+    }
   };
 
   const [formData, setFormData] = useState(initialValue);
@@ -90,7 +100,7 @@ const TicketForm = () => {
           Category
         </label>
         <select
-          name="status"
+          name="category"
           className="w-full font-mono border-2 rounded-md"
           value={formData.category}
           onChange={handleChange}

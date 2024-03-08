@@ -1,17 +1,30 @@
-import React from "react";
+"use client";
+import React, { useEffect, useState } from "react";
 import TicketCard from "./(components)/TicketCard";
 
 const fetchTickets = async () => {
-  const response = await fetch("http://localhost:3000/api");
+  const response = await fetch("http://localhost:3000/api", {
+    cache: "no-store",
+  });
   const data = await response.json();
   return data.tickets;
 };
 
-const Dashboard = async () => {
-  const tickets = await fetchTickets();
+const Dashboard = () => {
+  const [tickets, setTickets] = useState([]);
+
+  useEffect(() => {
+    const loadTickets = async () => {
+      const fetchedTickets = await fetchTickets();
+      setTickets(fetchedTickets);
+    };
+    loadTickets();
+  }, []);
 
   let uniqueCategory = new Set(tickets.map((ticket) => ticket.category));
   uniqueCategory = [...uniqueCategory];
+
+  console.log("uniqueCategory is ", uniqueCategory);
 
   return (
     <>
