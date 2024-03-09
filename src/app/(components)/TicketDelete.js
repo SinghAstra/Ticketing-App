@@ -3,7 +3,7 @@ import { RxCrossCircled } from "react-icons/rx";
 
 const TicketDelete = ({ id, handleDelete }) => {
   const handleDeleteRequest = async () => {
-    const response = await fetch(`http://localhost:3000/api/ticket/${id}`, {
+    const response = await fetch(`/api/ticket/${id}`, {
       method: "DELETE",
     });
     const data = await response.json();

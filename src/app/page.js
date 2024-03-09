@@ -3,7 +3,8 @@ import React, { useEffect, useState } from "react";
 import TicketCard from "./(components)/TicketCard";
 
 const fetchTickets = async () => {
-  const response = await fetch("http://localhost:3000/api", {
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+  const response = await fetch(`${apiUrl}/api`, {
     cache: "no-store",
   });
   const data = await response.json();

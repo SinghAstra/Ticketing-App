@@ -24,28 +24,26 @@ const TicketForm = ({ editTicket, ticketData }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL;
     if (editTicket) {
-      const response = await fetch(
-        `http://localhost:3000/api/ticket/${formData._id}`,
-        {
-          method: "PUT",
-          body: JSON.stringify({
-            formData: {
-              title: formData.title,
-              description: formData.description,
-              category: formData.category,
-              priority: formData.priority,
-              status: formData.status,
-              progress: formData.progress,
-            },
-          }),
-        }
-      );
+      const response = await fetch(`${apiUrl}/api/ticket/${formData._id}`, {
+        method: "PUT",
+        body: JSON.stringify({
+          formData: {
+            title: formData.title,
+            description: formData.description,
+            category: formData.category,
+            priority: formData.priority,
+            status: formData.status,
+            progress: formData.progress,
+          },
+        }),
+      });
       if (response.ok) {
         router.push("/");
       }
     } else {
-      const response = await fetch("http://localhost:3000/api", {
+      const response = await fetch(`${apiUrl}/api`, {
         method: "POST",
         body: JSON.stringify({ formData }),
         "Content-Type": "application/json",
