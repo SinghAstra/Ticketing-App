@@ -33,8 +33,8 @@ const Dashboard = () => {
       {tickets &&
         uniqueCategory.map((category, categoryIndex) => {
           return (
-            <div className="p-2" key={categoryIndex}>
-              <h1 className="text-xl font-mono">{category.toUpperCase()}</h1>
+            <div className="p-4" key={categoryIndex}>
+              <h1 className="text-3xl font-mono">{category.toUpperCase()}</h1>
               <div className="grid lg:grid-cols-2 xl:grid-cols-4 gap-2 p-2">
                 {tickets
                   .filter((ticket) => ticket.category == category)
