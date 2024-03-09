@@ -22,7 +22,7 @@ const TicketCard = ({ ticket, handleDelete }) => {
     return formattedDate;
   }
   return (
-    <div className=" bg-cyan-600 p-2 rounded-lg font-mono flex flex-col">
+    <div className=" bg-cyan-600 p-2 rounded-lg font-mono flex flex-col shadow-lg">
       <div className="flex justify-between items-center mb-2">
         <TicketPriority priority={ticket.priority} />
         <TicketDelete id={ticket._id} handleDelete={handleDelete} />
